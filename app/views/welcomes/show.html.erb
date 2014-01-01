@@ -1,0 +1,7 @@
+<h1>Welcome!</h2>
+
+<% if current_user.has_fitbit_authorization? %>
+  <h2>you are good!</h2>
+<% else %>
+  <%= link_to 'Authenticate with fitbit', '/auth/fitbit' %>
+<% end %>

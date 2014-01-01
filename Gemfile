@@ -20,6 +20,9 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
 
+gem 'omniauth-fitbit'
+gem 'clearance'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -29,6 +32,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>= 2.14'
+  gem 'pry-rails'
 end
 
 group :test do

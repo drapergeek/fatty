@@ -31,6 +31,7 @@ GEM
       json
     arel (4.0.1)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -49,6 +50,10 @@ GEM
     capybara-webkit (1.1.1)
       capybara (>= 2.0.2, < 2.2.0)
       json
+    clearance (1.1.0)
+      bcrypt-ruby
+      email_validator (~> 1.4)
+      rails (>= 3.1)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -82,6 +87,7 @@ GEM
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
+    hashie (2.0.5)
     high_voltage (2.1.0)
     hike (1.2.3)
     i18n (0.6.9)
@@ -95,18 +101,36 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
+    multi_xml (0.5.5)
     neat (1.5.0)
       bourbon (>= 2.1)
       sass (>= 3.2)
     newrelic_rpm (3.7.1.182)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    oauth (0.4.7)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-fitbit (1.0.2)
+      multi_xml
+      omniauth-oauth (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     pg (0.17.1)
     polyglot (0.3.3)
+    pry (0.9.12.4)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -161,6 +185,7 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -201,6 +226,7 @@ DEPENDENCIES
   binding_of_caller
   bourbon
   capybara-webkit (>= 1.0.0)
+  clearance
   coffee-rails
   database_cleaner
   delayed_job_active_record (>= 4.0.0)
@@ -213,7 +239,9 @@ DEPENDENCIES
   launchy
   neat
   newrelic_rpm (>= 3.6.7)
+  omniauth-fitbit
   pg
+  pry-rails
   rack-timeout
   rails (>= 4.0.0)
   rails_12factor
