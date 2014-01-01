@@ -7,4 +7,5 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Fatty::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
+#Fatty::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
+Fatty::Application.config.secret_key_base = '123546FSDFSDFS1*FU*&*$Q$'

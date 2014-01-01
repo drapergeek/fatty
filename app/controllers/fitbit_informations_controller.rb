@@ -16,6 +16,7 @@ class FitbitInformationsController < ApplicationController
       oauth_token: auth_hash.credentials.token,
       oauth_secret: auth_hash.credentials.secret
     )
+    current_user.create_weight_loss_information
   end
 
   def update_current_information_for_user

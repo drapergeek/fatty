@@ -10,6 +10,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.0.2)
       activesupport (= 4.0.2)
       builder (~> 3.1.0)
@@ -74,6 +76,8 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.1)
     dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     email_validator (1.4.0)
       activemodel
     erubis (2.7.0)
@@ -83,6 +87,8 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    fitgem (0.8.0)
+      oauth
     flutie (2.0.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -221,6 +227,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   airbrake
   better_errors
   binding_of_caller
@@ -230,8 +237,10 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   delayed_job_active_record (>= 4.0.0)
+  dotenv-rails
   email_validator
   factory_girl_rails
+  fitgem
   flutie
   foreman
   high_voltage

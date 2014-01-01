@@ -22,6 +22,9 @@ gem 'unicorn'
 
 gem 'omniauth-fitbit'
 gem 'clearance'
+gem 'active_model_serializers'
+gem 'fitgem'
+gem 'dotenv-rails'
 
 group :development do
   gem 'better_errors'

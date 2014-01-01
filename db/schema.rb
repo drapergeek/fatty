@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101192724) do
+ActiveRecord::Schema.define(version: 20140101214322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,5 +51,15 @@ ActiveRecord::Schema.define(version: 20140101192724) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "weight_loss_informations", force: true do |t|
+    t.float    "percentage_lost"
+    t.integer  "user_id"
+    t.float    "original_weight"
+    t.float    "most_recent_weight"
+    t.date     "weight_updated_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
