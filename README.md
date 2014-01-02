@@ -1,8 +1,8 @@
 Fatty
 =====
 
-[![Build
-Status](https://travis-ci.org/drapergeek/fatty.png?branch=master)](https://travis-ci.org/drapergeek/fatty)
+[![Build Status](https://travis-ci.org/drapergeek/fatty.png?branch=master)](https://travis-ci.org/drapergeek/fatty)
+[![Code Climate](https://codeclimate.com/github/drapergeek/fatty.png)](https://codeclimate.com/github/drapergeek/fatty)
 
 Getting Started
 ---------------
