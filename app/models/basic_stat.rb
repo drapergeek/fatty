@@ -9,6 +9,10 @@ class BasicStat
     end
   end
 
+  def self.ordered_by_percentage
+    self.all.sort { |a, b| b.percentage_lost <=> a.percentage_lost }
+  end
+
   def initialize(user)
     @email = user.email
     @percentage_lost = user.percentage_lost

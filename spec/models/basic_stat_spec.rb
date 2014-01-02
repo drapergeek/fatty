@@ -23,6 +23,17 @@ describe BasicStat do
      end
   end
 
+  describe '.ordered_by_percentage' do
+    it 'returns the basic stats ordered from highest percentage to least' do
+      user_with_percentage_lost(1.0)
+      user_with_percentage_lost(2.0)
+
+      stats = BasicStat.ordered_by_percentage
+
+      expect(stats.map(&:percentage_lost)).to eq [2.0, 1.0]
+    end
+  end
+
   describe '#percentage_lost' do
     it 'returns the percentage lost from the users weight loss information' do
       user = create(:user, :with_weight_loss_information)
@@ -31,5 +42,11 @@ describe BasicStat do
 
       expect(stat.percentage_lost).to eq(user.percentage_lost)
     end
+  end
+
+  def user_with_percentage_lost(percent)
+    user = create(:user, :with_fitbit_information)
+    create(:weight_loss_information, percentage_lost: percent, user: user)
+    user
   end
 end

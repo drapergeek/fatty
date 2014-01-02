@@ -3,6 +3,6 @@ class Api::StatsController < ApiController
 
   def index
     StatUpdater.run
-    respond_with BasicStat.all, each_serializer: BasicStatSerializer
+    respond_with BasicStat.ordered_by_percentage, each_serializer: BasicStatSerializer
   end
 end
