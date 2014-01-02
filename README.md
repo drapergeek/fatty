@@ -1,6 +1,9 @@
 Fatty
 =====
 
+[![Build
+Status](https://travis-ci.org/drapergeek/fatty.png?branch=master)](https://travis-ci.org/drapergeek/fatty)
+
 Getting Started
 ---------------
 

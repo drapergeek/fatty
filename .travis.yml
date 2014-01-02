@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - "2.0.0"
+before_script:
+  - psql -c 'create database fatty_test;' -U postgres
+  - bundle exec rake db:migrate db:test:prepare
+notifications:
+  email:
+    on_success: change
+    on_failure: always
