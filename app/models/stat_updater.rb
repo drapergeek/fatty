@@ -15,7 +15,7 @@ class StatUpdater
 
 
   def update_stats
-    if todays_weight
+    if todays_weight > 0
       weight_loss_information.update!(
         most_recent_weight: todays_weight,
         weight_updated_on: Date.today
@@ -38,7 +38,7 @@ class StatUpdater
   end
 
   def original_weight
-    weight_for_date('2013-12-01')
+    weight_for_date(ENV['CHALLENGE_START_DATE'])
   end
 
   def weight_for_date(date)
