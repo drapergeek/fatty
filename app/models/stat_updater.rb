@@ -13,8 +13,8 @@ class StatUpdater
   end
 
   def update_stats
-    create_daily_weight
     update_original_weight
+    create_daily_weight
   end
 
   private
@@ -22,7 +22,7 @@ class StatUpdater
 
   def create_daily_weight
     if todays_weight > 0
-      user.daily_weight_informations.create(weight: todays_weight)
+      user.daily_weight_informations.create(weight: todays_weight).calculate_difference!
     end
   end
 

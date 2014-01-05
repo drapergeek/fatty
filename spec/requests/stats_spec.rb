@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'api/stats' do
   describe '#index' do
     it 'returns a list of all users with fitbit information' do
-      user = create(:user, :with_fitbit_information, email: 'spiderman@example.com')
+      user = create(:fitbit_user, email: 'spiderman@example.com')
       stub_stat_update
 
       get '/api/stats', format: 'json'
@@ -13,9 +13,7 @@ describe 'api/stats' do
 
     it 'returns the percentage lost for the user' do
       user = create(:user, :with_fitbit_information)
-      create(:weight_loss_information,
-             percentage_lost: 1.2,
-             user: user)
+      user.daily_weight_informations.create(percentage_lost: 1.2)
       stub_stat_update
 
       get '/api/stats', format: :json

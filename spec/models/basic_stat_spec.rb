@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BasicStat do
   describe '.all' do
     it 'returns an array of BasicStats, one for each user' do
-      user = create(:user, :with_fitbit_information)
+      user = create(:fitbit_user)
 
       stats = BasicStat.all
       first_stat = stats.first
@@ -13,7 +13,7 @@ describe BasicStat do
 
      it 'does not include users who are not authenticated through fitbit' do
       create(:user)
-      user = create(:user, :with_fitbit_information)
+      user = create(:fitbit_user)
 
       stats = BasicStat.all
       first_stat = stats.first
@@ -36,7 +36,7 @@ describe BasicStat do
 
   describe '#percentage_lost' do
     it 'returns the percentage lost from the users weight loss information' do
-      user = create(:user, :with_weight_loss_information)
+      user = create(:fitbit_user)
 
       stat = BasicStat.new(user)
 
@@ -46,7 +46,7 @@ describe BasicStat do
 
   def user_with_percentage_lost(percent)
     user = create(:user, :with_fitbit_information)
-    create(:weight_loss_information, percentage_lost: percent, user: user)
+    user.daily_weight_informations.create(percentage_lost: percent)
     user
   end
 end

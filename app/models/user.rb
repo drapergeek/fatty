@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
   has_many :daily_weight_informations
 
   delegate :has_fitbit_authorization?, to: :fitbit_information, allow_nil: true
-  delegate :percentage_lost, to: :weight_loss_information, allow_nil: true
+
+  def percentage_lost
+    daily_weight_informations.last.percentage_lost
+  end
 
   def original_weight
     original_weight_information.weight
