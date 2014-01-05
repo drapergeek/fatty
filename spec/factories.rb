@@ -28,4 +28,8 @@ FactoryGirl.define do
   factory :original_weight_information do
 
   end
+
+  factory :daily_weight_information do
+
+  end
 end

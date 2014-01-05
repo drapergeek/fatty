@@ -18,7 +18,9 @@ class StatUpdater
   end
 
   def create_daily_weight
-    user.daily_weight_informations.create(weight: todays_weight)
+    if todays_weight > 0
+      user.daily_weight_informations.create(weight: todays_weight)
+    end
   end
 
   def update_original_weight

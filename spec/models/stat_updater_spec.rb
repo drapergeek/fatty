@@ -2,27 +2,24 @@ require 'spec_helper'
 
 describe StatUpdater, "#update_stats" do
   context "when a weight was not entered for the day" do
-    before do
-      stub_original_weight(999999)
-      stub_current_weight(999999)
-    end
     it "keeps the previously recorded weight" do
-      user = create(:user, :with_fitbit_information)
-      create(:weight_loss_information, most_recent_weight: 100.0, user: user)
+      user = create(:fitbit_user)
+      create(:daily_weight_information, weight: 100.0, user: user)
       stub_challenge_start_date('2013-12-01')
-      stub_fitbit_api_request_with(Date.today, 0)
-      stub_fitbit_api_request_with(ENV['CHALLENGE_START_DATE'], 123)
+      stub_current_weight(0)
+      stub_original_weight(123)
 
       StatUpdater.new(user).update_stats
-      most_recent_weight = user.reload.weight_loss_information.most_recent_weight
+      most_recent_weight = user.reload.daily_weight_informations.last
 
-      expect(most_recent_weight).to eq 100.0
+      expect(most_recent_weight.weight).to eq 100.0
     end
 
     it 'records a daily weight for the user' do
-      user = create(:user, :with_fitbit_information)
+      user = create(:fitbit_user)
       stub_challenge_start_date('2013-12-01')
       stub_current_weight(100)
+      stub_original_weight(999999)
       StatUpdater.new(user).update_stats
 
       weight_information = user.reload.daily_weight_informations.last
@@ -33,6 +30,7 @@ describe StatUpdater, "#update_stats" do
       user = create(:fitbit_user)
       stub_challenge_start_date('2013-12-01')
       stub_original_weight(100)
+      stub_current_weight(99999999)
       StatUpdater.new(user).update_stats
 
       weight_information = user.original_weight_information
