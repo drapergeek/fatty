@@ -13,8 +13,12 @@ class StatUpdater
     @user_token = @fitbit_information.oauth_token
   end
 
-
   def update_stats
+    user.create_daily_weight(todays_weight)
+  end
+
+
+  def update_stats_old
     if todays_weight > 0
       weight_loss_information.update!(
         most_recent_weight: todays_weight,

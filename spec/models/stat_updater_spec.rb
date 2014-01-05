@@ -14,10 +14,31 @@ describe StatUpdater, "#update_stats" do
 
       expect(most_recent_weight).to eq 100.0
     end
+
+    it 'records a daily weight for the user' do
+      user = create(:user, :with_fitbit_information)
+      stub_challenge_start_date('2013-12-01')
+      stub_current_weight(100)
+      stub_original_weight(123)
+      StatUpdater.new(user).update_stats
+
+      weight_information = user.reload.daily_weight_informations.last
+      expect(weight_information.weight).to eq(100)
+
+      #lookup the original weight here as well
+    end
+  end
+
+  def stub_current_weight(weight)
+    stub_fitbit_api_request_with(Date.today, weight)
   end
 
   def stub_challenge_start_date(date)
     ENV['CHALLENGE_START_DATE'] = date
+  end
+
+  def stub_original_weight(weight)
+    stub_fitbit_api_request_with(ENV['CHALLENGE_START_DATE'], weight)
   end
 
   def stub_fitbit_api_request_with(date, weight)
