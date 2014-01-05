@@ -2,6 +2,9 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) {|n| "user#{n}@example.com" }
     password 'password'
+    factory :fitbit_user, traits: [:with_fitbit_information,
+                                   :with_original_weight_loss_information]
+
 
     trait :with_fitbit_information do
       after(:create) do |user|
@@ -9,9 +12,10 @@ FactoryGirl.define do
       end
     end
 
-    trait :with_weight_loss_information do
+    trait :with_original_weight_loss_information do
       after(:create) do |user|
-        user.weight_loss_information = create(:weight_loss_information, percentage_lost: 1.2)
+        user.original_weight_information = create(:original_weight_information,
+                                                  weight: 100)
       end
     end
   end
@@ -21,7 +25,7 @@ FactoryGirl.define do
     oauth_secret 'secret'
   end
 
-  factory :weight_loss_information do
+  factory :original_weight_information do
 
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105223133) do
+ActiveRecord::Schema.define(version: 20140105224009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20140105223133) do
     t.integer  "user_id"
     t.string   "oauth_token"
     t.string   "oauth_secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "original_weight_informations", force: true do |t|
+    t.float    "weight"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

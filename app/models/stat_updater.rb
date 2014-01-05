@@ -8,13 +8,23 @@ class StatUpdater
   def initialize(user)
     @user = user
     @fitbit_information = user.fitbit_information
-    @weight_loss_information = user.weight_loss_information
     @user_secret = @fitbit_information.oauth_secret
     @user_token = @fitbit_information.oauth_token
   end
 
   def update_stats
-    user.create_daily_weight(todays_weight)
+    create_daily_weight
+    update_original_weight
+  end
+
+  def create_daily_weight
+    user.daily_weight_informations.create(weight: todays_weight)
+  end
+
+  def update_original_weight
+    if user.original_weight != original_weight
+      user.original_weight_information.update(weight: original_weight)
+    end
   end
 
 

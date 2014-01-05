@@ -16,7 +16,7 @@ class FitbitInformationsController < ApplicationController
       oauth_token: auth_hash.credentials.token,
       oauth_secret: auth_hash.credentials.secret
     )
-    current_user.create_weight_loss_information
+    current_user.create_original_weight_information
     StatUpdater.new(current_user).update_stats
   end
 
