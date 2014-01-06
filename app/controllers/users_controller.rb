@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   def edit
-    @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-    user = User.find_by_id(params[:id])
+    user = User.find(params[:id])
     user.update_attributes(user_params)
     if user.save
       redirect_to root_url
