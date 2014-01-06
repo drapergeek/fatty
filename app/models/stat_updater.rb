@@ -21,8 +21,20 @@ class StatUpdater
   attr_reader :user_token, :user_secret, :user, :weight_loss_information
 
   def create_daily_weight
+    if Date.today.day != user.daily_weight_informations.last.created_at.day
+      user.daily_weight_informations.create(weight: new_weight).calculate_difference!
+    else
+      if new_weight != user.current_weight
+        user.daily_weight_informations.update(weight: new_weight).calculate_difference!
+      end
+    end
+  end
+
+  def new_weight
     if todays_weight > 0
-      user.daily_weight_informations.create(weight: todays_weight).calculate_difference!
+      todays_weight
+    else
+      user.current_weight
     end
   end
 

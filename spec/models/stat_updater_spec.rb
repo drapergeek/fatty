@@ -36,6 +36,21 @@ describe StatUpdater, "#update_stats" do
       weight_information = user.original_weight_information
       expect(weight_information.weight).to eq(100)
     end
+
+    context 'when the user does not provide a weight for the day' do
+      it 'will use the previous days weight' do
+        user = create(:fitbit_user)
+        user.daily_weight_informations.create(weight: 99)
+        stub_challenge_start_date('2013-12-01')
+        stub_original_weight(99999)
+        stub_current_weight(0)
+        StatUpdater.new(user).update_stats
+
+        weight_information = user.daily_weight_informations.last
+        expect(weight_information.weight).to eq(99)
+        expect(user.daily_weight_informations.length).to eq(3)
+      end
+    end
   end
 
   def stub_current_weight(weight)
