@@ -1,4 +1,4 @@
-<h1>Welcome!</h2>
+<h1>Welcome <%= current_user.name %>!</h2>
 
 <% if current_user.has_fitbit_authorization? %>
   <h3>Here are the current stats:</h3>
@@ -8,3 +8,5 @@
 <% else %>
   <%= link_to 'Authenticate with fitbit', '/auth/fitbit' %>
 <% end %>
+
+<%= link_to "Edit Information", edit_user_path(current_user) %>

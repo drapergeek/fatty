@@ -8,4 +8,16 @@ class User < ActiveRecord::Base
   def self.with_fitbit_authorization
     self.all.select(&:has_fitbit_authorization?)
   end
+
+  def name=(name)
+     write_attribute(:name, name)
+  end
+
+  def name
+    if read_attribute(:name).blank?
+      email
+    else
+      read_attribute(:name)
+    end
+  end
 end
